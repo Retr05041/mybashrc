@@ -5,7 +5,16 @@ TARGET_BASHRC="$HOME/.bashrc"
 SOURCE='if [ -f ~/.config/.mybashrc ]; then
     . ~/.config/.mybashrc
 fi
+
+eval "$(starship init bash)"
 '
+
+if ! command -v starship &>/dev/null; then
+  echo "Starship is not installed. Installing..."
+  curl -sS https://starship.rs/install.sh | sh
+else
+  echo "Starship is already installed."
+fi
 
 if [[ -f "$HOME/.config/.mybashrc" ]]; then
   read -p "$HOME/.config/.mybashrc found, replace? [y/n]: " response
