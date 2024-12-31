@@ -46,7 +46,7 @@ fi
 
 if grep -Fq "$SOURCE" "$TARGET_BASHRC"; then
   echo "Custom bashrc sourced already."
-  exit 1
+  exit 0
 fi
 
 echo "$SOURCE" >>"$TARGET_BASHRC"

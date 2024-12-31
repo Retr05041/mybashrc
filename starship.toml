@@ -1,7 +1,12 @@
+format = "$directory$git_branch$character"
+
+add_newline = false
+
 [shell]
 disabled = false
 bash_indicator = ""
 
 [golang]
-symbol = "Golang "
-
+symbol = "&#128057; "
+style = "bg:#86BBD8"
+format = '[[ $symbol ($version) ](bg:#86BBD8)]($style)'
