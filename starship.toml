@@ -1,3 +1,7 @@
 [shell]
 disabled = false
 bash_indicator = ""
+
+[golang]
+symbol = "Golang "
+
