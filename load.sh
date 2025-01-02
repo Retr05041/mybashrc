@@ -6,13 +6,13 @@ SOURCE='
 if [ -f ~/.config/.mybashrc ]; then
     . ~/.config/.mybashrc
 fi
-
 eval "$(starship init bash)"
+eval "$(zoxide init bash)"
 '
 
 if ! command -v exa &>/dev/null; then
   echo "Exa is not installed. Installing..."
-  sudo pacman -S --no-confirm exa
+  sudo pacman -S exa
 else
   echo "Exa is already installed."
 fi
@@ -44,11 +44,13 @@ else
   cp .mybashrc "$HOME/.config"
 fi
 
-if grep -Fq "$SOURCE" "$TARGET_BASHRC"; then
-  echo "Custom bashrc sourced already."
-  exit 0
-fi
+while IFS= read -r line; do
+  if ! grep -Fq "$line" "$TARGET_BASHRC"; then
+    echo "$SOURCE" >> "$TARGET_BASHRC"
+    echo "Custom bashrc appended."
+    exit 0
+  fi
+done <<< "$SOURCE"
 
-echo "$SOURCE" >>"$TARGET_BASHRC"
-echo "Custom bashrc appended."
+echo "Custom bashrc appended already."
 exit 0
