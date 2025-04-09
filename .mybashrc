@@ -2,29 +2,16 @@
 alias wip=whatsmyip
 alias extract=extract
 alias clone=clone
-alias updatetimezone=updatetz
 alias h="history | grep "
 alias f="find . | grep "
-alias slink="ln -s "
 alias ls='exa --icons -F -H --group-directories-first --git -1'
 alias ll='ls -alF'
 # alias lsa="ls -l --all"
 # alias ls="ls -l"
 alias cls="clear"
-alias fwr="sed -i 's/\r$//'"
-alias volume="alsamixer"
 alias vi="nvim"
 alias cppwd="pwd | xclip -selection clipboard"
 alias cd='z'
-
-# If you end up using lots of swap, everything is slower
-# When you free RAM (by closing apps), the swap remains used and everything may still feel slow.
-# `clearswap` empties the swap back into main memory. It takes a little bit of time
-# but after that, no more slowdown!
-alias clearswap="sudo swapoff -a;sudo swapon -a"
-
-# === Shell Configs === (Now being configured by Starship)
-#PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\][\u:\[\033[00m\]\[\033[01;34m\]\W]\[\033[00m\]\$ '
 
 # === Utility Functions ===
 
@@ -65,11 +52,3 @@ extract () {
         fi
     done
 }
-
-if [[ -z "$TMUX" ]]; then
-    tmux has-session -t main
-    if [[ $? != 0 ]]; then
-        tmux new-session -s main
-    fi
-    tmux attach -t main
-fi
